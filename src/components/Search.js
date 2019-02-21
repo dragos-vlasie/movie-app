@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class Home extends Component {
+class searchTerm extends Component {
     state = {
       data: [],
       search: ''
@@ -78,5 +78,5 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default searchTerm;
 // https://api.themoviedb.org/3/movie/550?api_key=e99043e1b44f1a6d68049b97f2e11003
