@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import Navbar from './components/Navbar';
 import Search from './components/Search';
 import VoteMovieCard from './components/VoteMovieCard';
+import Home from './components/Home';
 
 class App extends Component {
   render() {
@@ -11,8 +12,9 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Navbar />
-           <Route exact path='/Vote' component={VoteMovieCard} />
-           <Route path='/search' component={Search} />
+          <Route exact path='/' component={Home} />
+          <Route path='/Vote' component={VoteMovieCard} />
+          <Route path='/search' component={Search} />
         </div>
       </BrowserRouter>
     );

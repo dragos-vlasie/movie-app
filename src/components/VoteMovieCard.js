@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import * as actionCreators from '../actions/index.js'
 
 export class VoteMovieCard extends Component {
         constructor(props) {
@@ -23,10 +25,14 @@ export class VoteMovieCard extends Component {
           });
         }
 
+        componentDidMount() {
+          this.props.searchMovie()
+        }
+
   render() {
     return (
       <div>
-        <h3 className="">Please vote your the movie</h3>
+        <h3 className="">The movie</h3>
           <div className="vote-movie-card">
             <div className="post card">
               <div className="card-content">
@@ -36,6 +42,7 @@ export class VoteMovieCard extends Component {
                   </div>
                   <div className="movie-card__content">
                     <div className="movie-card__description">
+                    <span className="card-title">Movie Title</span>
                       <p>Movie description here</p>
                     </div>
                     <div className="movie-card__votes">
@@ -59,4 +66,12 @@ export class VoteMovieCard extends Component {
   }
 }
 
-export default VoteMovieCard
+const mapStateToProps = (state) => {
+  return {
+    data: state
+  }
+}
+
+
+export default connect(mapStateToProps, actionCreators)(VoteMovieCard)
+
