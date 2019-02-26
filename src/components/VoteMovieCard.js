@@ -25,11 +25,12 @@ export class VoteMovieCard extends Component {
           });
         }
 
-        componentDidMount() {
-          this.props.searchMovie()
-        }
+        // componentDidMount() {
+        //   this.props.searchMovie()
+        // }
 
   render() {
+    console.log('this.props:', this.props.data.voteMovieReducer)
     return (
       <div>
         <h3 className="">The movie</h3>

@@ -13,6 +13,7 @@ class MovieCard extends Component {
 
     handleChange = (event) => {
         let cucu = event.target.parentElement.parentElement.parentElement.parentElement.id
+
         this.props.addMovie(cucu)
     }
 

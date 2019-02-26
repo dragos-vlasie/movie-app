@@ -14,13 +14,13 @@ class Home extends Component {
   }
 
   render() {
-    console.log('data:', this.props.data.movies)
+    console.log('data:', this.props.data.moviesReducer.movies)
     return (
       <div className="home">
         <div className="home__title">select these options</div>
         <div className="home__content-wrapper">
           <div className="home__movie-to-add">
-            <SearchSummary movies={this.props.data}/>
+            <SearchSummary movies={this.props.data.moviesReducer}/>
           </div>
           <div className="home__movie-vote">
           </div>
