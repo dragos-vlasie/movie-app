@@ -29,11 +29,7 @@ export function movieList(movies) {
     }
 }
 
-
-    
-
 export const addMovie = (id) => {
-    console.log(id);
     const movieId = id;
     return (dispatch) => {
     return axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`)
@@ -41,11 +37,8 @@ export const addMovie = (id) => {
     }
 }
     export function sendID(movie) {
-        console.log('movie:', movie)
-
-        const action = {
+        return  {
             type: "ADD_MOVIE",
             movie: movie
           }
-        return action;
       }

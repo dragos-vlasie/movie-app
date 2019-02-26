@@ -1,15 +1,23 @@
 
 
+const getMovie = (action) => {
+  console.log(action.movie);
 
-const voteMovieReducer = (state = 0, action)=> {
-switch(action.type){
-   case 'ADD_MOVIE':
-     return {
-       movie: action.movie
-     }
-   default:
-       return state
+  return {
+    id: Math.random,
+    movie : action.movie
+  }
 }
+
+const voteMovieReducer = (state = [], action)=> {
+  let movies = null;
+  switch(action.type) {
+    case 'ADD_MOVIE':
+      movies = [...state, getMovie(action)];
+      return movies;
+    default:
+        return state
+  }
 }
 
 export default voteMovieReducer;
