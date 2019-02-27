@@ -34,22 +34,8 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   background: #255188;
 }
 /* MovieVoteCard */
-.vote-movie-card {
-  width: 45%;
-  margin: auto;
-}
-
-.movie-card__wrapper {
-  display: flex;
-}
-
-.movie-card__content {
-  display: flex;
-  flex-grow: 1;
-}
-
-.movie-card__description {
-  flex-grow: 1;
+.vote-movie-card .card__info, .vote-movie-card .search-result__card{
+  width: 100%
 }
 
 
