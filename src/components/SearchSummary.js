@@ -24,5 +24,4 @@ const SearchSummary = (props) => {
     }
 }
 
-
 export default SearchSummary

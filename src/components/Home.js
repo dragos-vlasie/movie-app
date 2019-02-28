@@ -14,7 +14,6 @@ class Home extends Component {
   }
 
   render() {
-    console.log('data:', this.props.data.moviesReducer.movies)
     return (
       <div className="home">
         <div className="home__title">select these options</div>

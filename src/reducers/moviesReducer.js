@@ -13,11 +13,6 @@ switch(action.type){
      return {
        movies: action.movies
      }
-   // case 'ADD_MOVIE':
-   // console.log(action.movie);
-   //   return {
-   //     movie: action.movie
-   //   }
    default:
        return state
 }

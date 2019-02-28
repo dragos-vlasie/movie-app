@@ -39,6 +39,18 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 }
 
 
+.vote-movie-card .add_circle {
+  display: none;
+}
+
+.vote-movie-card .remove_circle{
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.remove_circle .material-icons {
+  padding: 8px 80px;
+}
 
 /* Search */
 .search-bar {
@@ -52,7 +64,6 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   padding: 0 20px !important;
   margin: 0 !important;
 }
-
 
 .search-icon {
   position: absolute;
@@ -167,14 +178,27 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   padding: 4px 7px 5px 7px;
 }
 
+.add_circle {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.add_circle .material-icons {
+    padding: 8px 80px;
+}
+
 .add_circle:hover .tooltip_popup-add{
   display: inline;
   position: absolute;
-  top: -28px;
-  right: 84px;
-  background: #071c24;
+  top: -40px;
+  width: 150px;
+  right: 0;
+  left: 0;
+  background: rgba(7, 28, 36, 0.9);
   color: grey;
-  z-index: 1403;
+  z-index: 999;
+  margin: auto;
   padding: 14px;
 }
 
@@ -182,7 +206,7 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   display: none;
   padding: 4px 7px 5px 7px;
 }
-
+/* 
 .remove_circle:hover .tooltip_popup-remove{
   display: inline;
   position: absolute;
@@ -192,7 +216,7 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   color: grey;
   z-index: 1403;
   padding: 14px;
-}
+} */
 
 /* Search Summary and HOme */
 

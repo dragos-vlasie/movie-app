@@ -11,10 +11,11 @@ class MovieCard extends Component {
         }
     }
 
-    handleChange = (event) => {
-        let cucu = event.target.parentElement.parentElement.parentElement.parentElement.id
+    handleClick = (event) => {
+        let movieId = event.target.parentElement.parentElement.parentElement.parentElement.id
+        console.log('movieId:', movieId)
 
-        this.props.addMovie(cucu)
+        this.props.addMovie(movieId)
     }
 
     render() {
@@ -24,13 +25,9 @@ class MovieCard extends Component {
                 <div className="card__image">
                     <img alt="poster" width="185" height="278" src={posterPath}/>
                     <div className="tooltip">
-                        <span className="add_circle" onClick={this.handleChange}>
+                        <span className="add_circle" onClick={this.handleClick}>
                             <i className="material-icons">add_circle</i>
                             <div className="tooltip_popup-add">Add movie</div>
-                        </span>
-                        <span className="remove_circle">
-                            <i className="material-icons">remove_circle</i>
-                            <div className="tooltip_popup-remove">Remove</div>
                         </span>
                     </div>
                 </div>

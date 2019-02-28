@@ -1,7 +1,6 @@
 
 
 const getMovie = (action) => {
-  console.log(action.movie);
 
   return {
     id: Math.random,
@@ -15,6 +14,9 @@ const voteMovieReducer = (state = [], action)=> {
     case 'ADD_MOVIE':
       movies = [...state, getMovie(action)];
       return movies;
+    case 'ERROR_MOVIE':
+      console.log('error', action.err)
+      return state;
     default:
         return state
   }
