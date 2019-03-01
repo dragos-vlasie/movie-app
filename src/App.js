@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter, Route } from 'react-router-dom'
-import Navbar from './components/Navbar';
-import Search from './components/Search';
-import VoteMovieCard from './components/VoteMovieCard';
-import Home from './components/Home';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import Navbar from './components/Layout/Navbar';
+import Search from './components/SearchMovie/Search';
+import VoteMovieCard from './components/VoteMovie/VoteMovieCard';
+import Home from './components/Dashboard/Home';
+import SignIn from './components/Auth/SignIn'
+import SignUp from './components/Auth/SignUp'
 
 class App extends Component {
   render() {
@@ -12,9 +14,13 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Navbar />
-          <Route exact path='/' component={Home} />
-          <Route path='/Vote' component={VoteMovieCard} />
-          <Route path='/search' component={Search} />
+          <Switch >
+            <Route exact path='/' component={Home} />
+            <Route path='/Vote' component={VoteMovieCard} />
+            <Route path='/search' component={Search} />
+            <Route path='/signin' component={SignIn}/>
+            <Route path='/signup' component={SignUp}/>
+          </Switch>
         </div>
       </BrowserRouter>
     );

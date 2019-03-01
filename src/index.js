@@ -8,17 +8,23 @@ import {Provider} from "react-redux";
 import reducers from './reducers/index.js'
 import { reduxFirestore, getFirestore } from 'redux-firestore'
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
-import fbConfig from './config/fbConfig'
-
+import firebase from './config/fbConfig'
+const config = {
+    attachAuthIsReady: true, // attaches auth is ready promise to store
+    firebaseStateName: 'firebase', // should match the reducer name ('firebase' is default)
+    presence: 'presence', // where list of online users is stored in database
+    sessions: 'sessions'
+  }
+  // During store creation
 const store = createStore(reducers,
     compose(
         applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
-        reduxFirestore(fbConfig),
-        reactReduxFirebase(fbConfig)
+        reduxFirestore(firebase),
+        reactReduxFirebase(firebase, config)
     )
 );
 
-
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
-
+store.firebaseAuthIsReady.then(() => {
+    ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
+  })
 

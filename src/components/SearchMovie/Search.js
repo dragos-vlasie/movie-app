@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actionCreators from '../actions/index.js'
+import * as actionCreators from '../../actions/index.js'
 import MovieList from './MovieList.js';
+import { Redirect } from 'react-router-dom';
 
 class Search extends Component {
     constructor(props) {
@@ -27,6 +28,9 @@ class Search extends Component {
     }
     
     render() {
+
+        const { auth } = this.props
+        if (!auth.uid) return <Redirect to ='/signin' />
         return (
             <div>
                 <div className="search-bar">
@@ -42,6 +46,7 @@ class Search extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        auth: state.firebase.auth,
         data: state
     }
 }

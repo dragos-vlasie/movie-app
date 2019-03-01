@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import * as actionCreators from '../actions/index.js'
-import SearchSummary from './SearchSummary.js';
+import * as actionCreators from '../../actions/index'
+import SearchSummary from './SearchSummary';
+import { Redirect } from 'react-router-dom';
 
 class Home extends Component {
   constructor(props) {
@@ -14,6 +15,8 @@ class Home extends Component {
   }
 
   render() {
+    const { auth } = this.props
+    if (!auth.uid) return <Redirect to ='/signin' />
     return (
       <div className="home">
         <div className="home__title">select these options</div>
@@ -22,6 +25,7 @@ class Home extends Component {
             <SearchSummary movies={this.props.data.moviesReducer}/>
           </div>
           <div className="home__movie-vote">
+          <h1>vote for movie alerady chosen</h1>
           </div>
         </div>
       </div>
@@ -31,7 +35,8 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    data: state
+    data: state,
+    auth: state.firebase.auth,
   }
 }
 

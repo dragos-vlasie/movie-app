@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import * as actionCreators from '../actions/index.js'
+import * as actionCreators from '../../actions/index.js'
 
 class MovieCard extends Component {
     constructor(props) {
