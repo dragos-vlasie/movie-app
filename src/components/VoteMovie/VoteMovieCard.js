@@ -10,37 +10,36 @@ export class VoteMovieCard extends Component {
       this.state = {
       };
       this.increaseCount = this.increaseCount.bind(this);
-      this.decreaseCount = this.decreaseCount.bind(this);
-    }
-    
-    decreaseCount() {
-
     }
     
     increaseCount(event) {
-      // const id = event.target.closest('.vote-movie-card').id
-      console.log(this.props.user.auth.uid)
-      console.log(this.props.users)
-    }
+      const id = event.target.closest('.vote-movie-card').id
+      const currentUser = this.props.user.auth.uid
+      const users = this.props.users;
+        users.map( user => {
+          if (user.id === currentUser) {
+            this.props.voteMovie(id, user)
+          }
+        })
+      }
 
     handleClick = (event) => {
       let movieId = event.target.closest(".vote-movie-card").id
-
       this.props.removeMovie(movieId)
   }
 
     render() {
-      console.log('this.props.users:', this.props.users)
-      if (this.props.data) {
+      console.log('this.props:', this.props.data)
+      if (this.props.data && this.props.data.length !== 0) {
         return (
-          <div className="row search-results">
+          <div className="search-results">
             {this.props.data.map(movie => {
               const posterPath = "https://image.tmdb.org/t/p/w185" + movie.posterPath
               return(
                 <div key={movie.id} id={movie.id} className="vote-movie-card">
                   <div className="search-result__card" key={movie.id}>
                     <div className="card__image">
-                      <img alt="poster" width="185" height="278" src={posterPath} />
+                      <img alt="poster" src={posterPath} />
                       <div className="tooltip">
                         <span className="add_circle">
                           <i className="material-icons">add_circle</i>
@@ -55,16 +54,12 @@ export class VoteMovieCard extends Component {
                     <div className="card__info">
                       <div className="text-center">
                         <span className="card-title">{movie.title}</span>
+                        <span className="card-user">Added by: {movie.addedBy}</span>
                       </div>
                       <p className="overview">{movie.content}</p>
                       <div className="view_more">
-                        <p className='counter-item-votes'
-                          style={this.state.count > 5 ? { color: 'lightgreen' } : null}
-                        >{this.state.count}
-                          <i data-icon="ei-like" data-size="s"></i>
-                        </p>
+                        <div className="user-vote">{movie.votedBy && movie.votedBy.map((user, index) => {return <p className="voter" key="{index}">{console.log(index)}{user}.</p>})}</div>
                         <div className='button-list'>
-                          <button className='minus' onClick={this.decreaseCount}>-</button>
                           <button className='add' onClick={this.increaseCount}>+</button>
                         </div>
                       </div>
@@ -75,10 +70,14 @@ export class VoteMovieCard extends Component {
             })}
             </div>
           )
-    } else {
+    } else if (this.props.data && this.props.data.length === 0){
         return (
-            <div>asta e coaie</div>
+            <div>No movie added </div>
         )
+      } else {
+          return (
+              <div>Loading</div>
+          )
       }
   }
 }

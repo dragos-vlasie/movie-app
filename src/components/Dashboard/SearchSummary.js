@@ -12,14 +12,14 @@ const SearchSummary = (props) => {
             }
               return (
                   <div className="search-summary"key={movie.id}>
-                        <img alt="poster" width="185" height="278" src={posterPath}/>
+                      <img alt="poster" width="185" height="278" src={posterPath}/>
                   </div>
               )
             })
           )
     } else {
         return (
-            <div>asta e coaie</div>
+            <div>Loading</div>
         )
     }
 }

@@ -14,7 +14,6 @@ code {
 }
 
 
-
 input[type=text]:not(.browser-default):focus:not([readonly]),
 input[type=email]:not(.browser-default):focus:not([readonly]),
 input[type=password]:not(.browser-default):focus:not([readonly]),
@@ -29,25 +28,66 @@ input[type=email]:not(.browser-default):focus:not([readonly]) + label,
 input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   color: #ec407a !important;
 }
+.App {
+  position: relative;
+  padding-bottom: 40px;
+  height: 100%;
+}
 
+.page-footer {
+  width: 100%;
+  background: #255188;
+  position: fixed;
+  bottom: 0;
+  padding-top: 0px;
+}
 .nav-wrapper {
   background: #255188;
+  padding: 0 40px;
 }
 /* MovieVoteCard */
+.vote-movie-card {
+  width: 900px;
+}
 .vote-movie-card .card__info, .vote-movie-card .search-result__card{
   width: 100%
 }
-
 
 .vote-movie-card .add_circle {
   display: none;
 }
 
-.vote-movie-card .remove_circle{
+.vote-movie-card .remove_circle {
   position: absolute;
   left: 0;
   right: 0;
 }
+
+.vote-movie-card .view_more {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-vote {
+  display: flex;
+}
+
+.voter {
+  margin-top: 0;
+  padding: 0;
+  margin-right: 4px;
+}
+
+.vote-movie-card .card__image {
+  flex-shrink: 0;
+}
+.vote-movie-card .card-user {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  z-index: 999;
+}
+
 .remove_circle .material-icons {
   padding: 8px 80px;
 }
@@ -75,6 +115,7 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   width: 90%;
   display: flex;
   flex-wrap:wrap;
+  margin: 30px auto;
   justify-content: space-around;
 }
 /* Movie Card */
@@ -218,21 +259,101 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   padding: 14px;
 } */
 
-/* Search Summary and HOme */
+/* Search Summary and HOme  and VotedMoviesSummary*/
+.home__title {
+  font-size: 20px;
+  margin: 40px auto;
+}
 
 .home__movie-to-add {
-  display: flex;
   width: 50%;
+}
+
+.home__movie-vote {
+  width: 50%;
+}
+
+.home__movie-list {
+  display: flex;
+  max-width: 740px;
   height: 561px;
   flex-wrap: wrap;
-  overflow: hidden;
+  justify-content: center;
+  overflow: auto;
 }
 
 .home__content-wrapper {
   display: flex;
   margin: auto;
+  flex-wrap: wrap;
   width: 80%;
+}
+
+/* VotedMoviesSummary */
+
+.voted-movie__list {
+  overflow: auto;
+  height: 561px;
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 16px;
+}
+  .voted-movie__content {
+  overflow: scroll;
+  height: 170px;
+  }
+
+.voted-movie {
+  display: flex;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 8px;
+}
+
+.voted-movie__poster img{
+  width: 123px;
+  height: 170px;
 }
 
 
 
+
+/* the Breakpoints */
+
+@media only screen and (max-width: 500px) {
+  .search-result__card {
+    width: 100%;
+  }
+
+  .card__info {
+    width: 60%;
+    padding: 10px 8px 16px 8px;
+  }
+  nav {
+    height: 100px;
+  }
+}
+
+/* margins */
+
+.m-0 {
+  margin: 0;
+}
+
+
+
+
+@media only screen and (max-width: 1000px) {
+  .home__content-wrapper {
+    flex-wrap: wrap;
+    width: 95%;
+  }
+  .home__movie-to-add {
+    width: 100%;
+    align-self: center;
+  }
+  .home__movie-vote {
+    width: 100%;
+  }
+  .home__movie-list {
+    max-width: initial;
+  }
+}

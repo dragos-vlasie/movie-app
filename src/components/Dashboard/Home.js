@@ -2,7 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/index'
 import SearchSummary from './SearchSummary';
+import VotedMoviesSummary from './VotedMovieSummary';
 import { Redirect } from 'react-router-dom';
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
+import { NavLink } from 'react-router-dom'
 
 class Home extends Component {
   constructor(props) {
@@ -21,11 +25,18 @@ class Home extends Component {
       <div className="home">
         <div className="home__title">select these options</div>
         <div className="home__content-wrapper">
+           
           <div className="home__movie-to-add">
+           <h5>Select a movie to see</h5>
+           <NavLink to='/search' className="home__movie-list">
             <SearchSummary movies={this.props.data.moviesReducer}/>
+           </NavLink>
           </div>
           <div className="home__movie-vote">
-          <h1>vote for movie alerady chosen</h1>
+              <h5>Vote for a movie alerady chosen</h5>
+              <NavLink to='/vote' className="home__voted-movie-list">
+                <VotedMoviesSummary movies = {this.props.addedMovies}/>
+              </NavLink>
           </div>
         </div>
       </div>
@@ -35,9 +46,16 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    addedMovies: state.firestore.ordered.addedMovies,
     data: state,
     auth: state.firebase.auth,
   }
 }
 
-export default connect(mapStateToProps, actionCreators)(Home);
+export default compose(
+  connect(mapStateToProps, actionCreators),
+  firestoreConnect([
+     { collection: 'addedMovies'},
+     { collection: 'users'},
+  ])
+)(Home)

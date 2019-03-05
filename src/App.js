@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Navbar from './components/Layout/Navbar';
+import Footer from './components/Layout/Footer';
 import Search from './components/SearchMovie/Search';
 import VoteMovieCard from './components/VoteMovie/VoteMovieCard';
 import Home from './components/Dashboard/Home';
@@ -21,7 +22,9 @@ class App extends Component {
             <Route path='/signin' component={SignIn}/>
             <Route path='/signup' component={SignUp}/>
           </Switch>
+          <Footer />
         </div>
+        
       </BrowserRouter>
     );
 

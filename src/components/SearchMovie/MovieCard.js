@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/index.js'
+import { compose } from 'redux'
+import { firestoreConnect } from 'react-redux-firebase'
 
 class MovieCard extends Component {
     constructor(props) {
@@ -9,13 +11,18 @@ class MovieCard extends Component {
             data: [],
             search: ''
         }
+      this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick = (event) => {
         let movieId = event.target.parentElement.parentElement.parentElement.parentElement.id
-        console.log('movieId:', movieId)
-
-        this.props.addMovie(movieId)
+        const currentUser = this.props.user.auth.uid
+        const users = this.props.users;
+          users.map( user=>{
+            if (user.id === currentUser) {
+            this.props.addMovie(user, movieId)
+            }
+          })
     }
 
     render() {
@@ -23,7 +30,7 @@ class MovieCard extends Component {
         return (
             <div className="search-result__card" id={id}>
                 <div className="card__image">
-                    <img alt="poster" width="185" height="278" src={posterPath}/>
+                    <img alt="poster" src={posterPath}/>
                     <div className="tooltip">
                         <span className="add_circle" onClick={this.handleClick}>
                             <i className="material-icons">add_circle</i>
@@ -43,4 +50,16 @@ class MovieCard extends Component {
     }
 }
 
-export default connect(null, actionCreators)(MovieCard)
+const mapStateToProps = (state) => {
+    return {
+      users: state.firestore.ordered.users,
+      user: state.firebase
+    }
+  }
+  
+export default compose(
+    connect(mapStateToProps, actionCreators),
+    firestoreConnect([
+       { collection: 'users'},
+    ])
+  )(MovieCard)

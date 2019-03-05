@@ -17,13 +17,15 @@ class SignIn extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+
+    console.log('this.props:', this.props.authError)
+    console.log('this.props:', this.props)
     this.props.signIn(this.state)
   }
 
   render() {
-    console.log('this.props:', this.props.auth)
-    const { authError } = this.props;
     const { auth } = this.props
+    const { authError } = this.props
     if (auth.uid) return <Redirect to ='/' />
 
     return (
@@ -53,7 +55,7 @@ class SignIn extends Component {
 
 const mapStateToProps = (state) => {
   return{
-    authError: state.firebase.authError,
+    authError: state.authReducer.authError,
     auth: state.firebase.auth
   }
 }

@@ -4,7 +4,7 @@ import MovieCard from './MovieCard';
 const MovieList = (props) => {
     if (props.movies.moviesReducer.movies) {
         return (
-          <div className="row search-results">
+          <div className="search-results">
           {props.movies.moviesReducer.movies.map(movie => {
             let posterPath =""
             if (movie.poster_path == null) {
@@ -19,7 +19,7 @@ const MovieList = (props) => {
           )
     } else {
         return (
-            <div>asta e coaie</div>
+            <div>Loading</div>
         )
     }
 }

@@ -29,19 +29,20 @@ export function movieList(movies) {
     }
 }
 
-export const addMovie = (id) => {
+export const addMovie = (user, id) => {
     const movieId = id;
+    console.log('movieId:', movieId)
+    const currentUser = user;
     return (dispatch, getState, { getFirebase, getFirestore }) => {
-
         return axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`)
-        .then((res) => {(sendID(res.data, { getFirebase, getFirestore }))});
+        .then((res) => {(sendID(res.data, { getFirebase, getFirestore }, currentUser))});
     }
 }
 
-export function sendID(movie, { getFirebase, getFirestore }) {
+export function sendID(movie, { getFirebase, getFirestore }, currentUser) {
     const firestore = getFirestore();
     firestore.collection('addedMovies').add({
-        addedBy: "Dragos",
+        addedBy: currentUser.firstName,
         content: movie.overview,
         posterPath: movie.poster_path,
         title: movie.original_title,
@@ -111,7 +112,6 @@ export const signUp = (newUser) => {
       return firestore.collection('users').doc(resp.user.uid).set({
         firstName: newUser.firstName,
         lastName: newUser.lastName,
-        initials: newUser.firstName[0] + newUser.lastName[0]
       });
     }).then(() => {
       dispatch({ type: 'SIGNUP_SUCCESS' });
@@ -121,26 +121,18 @@ export const signUp = (newUser) => {
   }
 }
 
-
-export const signUp1 = (newUser) => {
-  return (dispatch, getState, {getFirebase, getFirestore}) => {
-    const firebase = getFirebase();
-    let user = null;
-    firebase.auth().createUserWithEmailAndPassword(
-      newUser.email, 
-      newUser.password
-    ).then(function () {
-      user = firebase.auth().currentUser;
-      user.sendEmailVerification();
-    })
-    .then(function () {
-      user.updateProfile({
-        displayName: newUser.firstName
-      });
-    }).then(() => {
-      dispatch({ type: 'SIGNUP_SUCCESS' });
-    }).catch((err) => {
-      dispatch({ type: 'SIGNUP_ERROR', err});
-    });
-  }
+// Vote movie 
+export const voteMovie = (id, user) => {
+    return (dispatch, getState, {getFirebase, getFirestore}) => {
+      const firestore = getFirestore();
+      console.log('user:', user)
+      console.log('user.firstName:', user.firstName)
+      firestore.collection('addedMovies').doc(id).update({
+      votedBy: firestore.FieldValue.arrayUnion(user.firstName + '  ' + user.lastName)
+      }).then(() => {
+        console.log('binee')
+      }).catch((err) =>{
+          console.log('rau:', err)
+      })
+    }
 }
