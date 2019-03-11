@@ -92,6 +92,7 @@ class MovieCard extends Component {
 
     render() {
         const { movie } = this.props;
+        
         return (
             <div className={  (movie.added ? ' vote-movie-card' : ' search-result__card')} id={movie.id}>
                 <div className="card__image">
