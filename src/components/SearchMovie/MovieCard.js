@@ -36,19 +36,13 @@ class MovieCard extends Component {
         let Id = event.target.closest('.search-result__card').id
         const currentUser = this.props.user.auth.uid
         const users = this.props.users;
-        const addedMovies = this.props.addedMovies;
-
-        var movieAlreadyAdded = addedMovies.filter(movie => {
-            return movie.added 
-        })
         
-        if(!movieAlreadyAdded.length) {
-            users.map( user => {
-              if (user.id === currentUser) {
-                  this.props.addMovie(user, Id)
-              }
-            })
-        }
+        users.map( user => {
+            if (user.id === currentUser) {
+                this.props.addMovie(user, Id)
+            }
+        })
+
         box.textContent= "check_circle";
         let text = event.target.nextElementSibling
         text.textContent = 'Added'
