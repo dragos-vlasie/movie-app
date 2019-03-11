@@ -42,7 +42,7 @@ class MovieCard extends Component {
             return movie.added 
         })
         
-        if(movieAlreadyAdded.length) {
+        if(!movieAlreadyAdded.length) {
             users.map( user => {
               if (user.id === currentUser) {
                   this.props.addMovie(user, Id)

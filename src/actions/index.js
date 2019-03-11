@@ -50,10 +50,11 @@ export const addMovie = (user, id) => {
 export function sendID(movie, { getFirebase, getFirestore }, currentUser) {
     const firestore = getFirestore();
     firestore.collection('addedMovies').add({
+        added: true,
         addedBy: currentUser.firstName,
-        content: movie.overview,
-        posterPath: movie.poster_path,
-        title: movie.original_title,
+        overview: movie.overview,
+        poster_path: movie.poster_path,
+        original_title: movie.original_title,
     }).then(() => {
         return  {
             type: "ADD_MOVIE",
