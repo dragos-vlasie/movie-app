@@ -19,6 +19,7 @@ input[type=email]:not(.browser-default):focus:not([readonly]),
 input[type=password]:not(.browser-default):focus:not([readonly]),
 textarea.materialize-textarea:focus:not([readonly]){
   border-color: #ec407a;
+
   box-shadow: none;
 }
 
@@ -27,10 +28,13 @@ textarea.materialize-textarea:focus:not([readonly]) + label,
 input[type=email]:not(.browser-default):focus:not([readonly]) + label,
 input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   color: #ec407a !important;
+  display: none;
 }
+
+
 .App {
   position: relative;
-  padding-bottom: 40px;
+  padding-bottom: 90px;
   height: 100%;
 }
 
@@ -38,6 +42,7 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   width: 100%;
   background: #255188;
   position: fixed;
+  z-index: 9999;
   bottom: 0;
   padding-top: 0px;
 }
@@ -45,7 +50,83 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   background: #255188;
   padding: 0 40px;
 }
-/* MovieVoteCard */
+/* Movie Vote Card */
+.movies-to-vote {
+  width: 90%;
+  display: flex;
+  flex-wrap:wrap;
+  margin: 30px auto;
+  justify-content: space-around;
+}
+
+.movies-to-vote .vote-movie-card {
+  margin-top:16px;
+  display: flex;
+  height: 278px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  align-items: center;
+}
+
+.movies-to-vote .card__image {
+  flex-shrink: 0;
+  height:278px;
+}
+
+.movies-to-vote .card__info {
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  padding: 10px 16px 16px;
+  height: 278px;
+  overflow: hidden;
+}
+
+.movies-to-vote .card-title {
+  width: 100%;
+  display: block;
+  font-weight: 600;
+  font-size: 1.1em;
+  line-height: 1.1em;
+  color: #000;
+}
+
+.movies-to-vote .overview {
+  word-wrap: break-word;
+  white-space: normal;
+  color: #4d4d4d;
+  font-size: 0.9em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0;
+  width: 100%;
+  line-height: 1.2em;
+  margin-top: 20px;
+  text-align: start;
+  margin-bottom: 0;
+  max-height: 162px;
+}
+
+.movies-to-vote .view_more {
+  border-top: 1px solid #e3e3e3;
+  background: white;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 16px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  line-height: 1.2em;
+  margin: 0;
+  text-align: left;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: #000;
+}
+
 .vote-movie-card {
   width: 900px;
 }
@@ -118,8 +199,8 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   margin: 30px auto;
   justify-content: space-around;
 }
-/* Movie Card */
 
+/* Movie Card */
 .search-result__card {
   width: 483px;
   margin-top:16px;
@@ -247,7 +328,7 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   display: none;
   padding: 4px 7px 5px 7px;
 }
-/* 
+
 .remove_circle:hover .tooltip_popup-remove{
   display: inline;
   position: absolute;
@@ -257,7 +338,7 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   color: grey;
   z-index: 1403;
   padding: 14px;
-} */
+}
 
 /* Search Summary and HOme  and VotedMoviesSummary*/
 .home__title {
@@ -267,6 +348,10 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 
 .home__movie-to-add {
   width: 50%;
+}
+
+.home__movie-to-add h5{
+  max-width: 740px;
 }
 
 .home__movie-vote {

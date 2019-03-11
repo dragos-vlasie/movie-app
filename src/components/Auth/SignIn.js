@@ -19,7 +19,6 @@ class SignIn extends Component {
     e.preventDefault();
 
     console.log('this.props:', this.props.authError)
-    console.log('this.props:', this.props)
     this.props.signIn(this.state)
   }
 

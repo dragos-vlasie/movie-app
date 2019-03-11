@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/index.js'
-import MovieList from './MovieList.js';
+import MovieCard from './MovieCard';
 import { Redirect } from 'react-router-dom';
 
-class Search extends Component {
+class MovieSearch extends Component {
     constructor(props) {
         super(props)
 
@@ -26,19 +26,29 @@ class Search extends Component {
             this.props.loadMovie();
         }
     }
+
+    renderMovieList() {
+        return (
+            <div className="search-results">
+                {this.props.data.moviesReducer.movies && this.props.data.moviesReducer.movies.map(movie => {
+                    return (
+                        <MovieCard movie = {movie} id= {movie.id} key={movie.id} />
+                    ) 
+                })} 
+                </div> 
+            )
+    }
     
     render() {
-
         const { auth } = this.props
         if (!auth.uid) return <Redirect to ='/signin' />
         return (
             <div>
                 <div className="search-bar">
                     <i className="material-icons search-icon">search</i>
-                    <input type="text" placeholder="Search for a movie" id='search' onChange={this.handleChange}
-                    />
+                    <input type="text" placeholder="Search for a movie" id='search' onChange={this.handleChange}/>
                 </div>
-                    <MovieList movies={this.props.data}/>
+                {this.renderMovieList()}
             </div>
         );
     }
@@ -51,5 +61,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect (mapStateToProps, actionCreators)(Search);
-// https://api.themoviedb.org/3/movie/550?api_key=e99043e1b44f1a6d68049b97f2e11003
+export default connect (mapStateToProps, actionCreators)(MovieSearch);

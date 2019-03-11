@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Navbar from './components/Layout/Navbar';
 import Footer from './components/Layout/Footer';
-import Search from './components/SearchMovie/Search';
+import MovieSearch from './components/SearchMovie/MovieSearch';
 import VoteMovieCard from './components/VoteMovie/VoteMovieCard';
 import Home from './components/Dashboard/Home';
 import SignIn from './components/Auth/SignIn'
@@ -18,7 +18,7 @@ class App extends Component {
           <Switch >
             <Route exact path='/' component={Home} />
             <Route path='/Vote' component={VoteMovieCard} />
-            <Route path='/search' component={Search} />
+            <Route path='/search' component={MovieSearch} />
             <Route path='/signin' component={SignIn}/>
             <Route path='/signup' component={SignUp}/>
           </Switch>

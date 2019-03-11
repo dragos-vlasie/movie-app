@@ -1,9 +1,7 @@
 
 
 const getMovie = (action) => {
-
   return {
-    id: Math.random,
     movie : action.movie
   }
 }
@@ -17,6 +15,14 @@ const voteMovieReducer = (state = [], action)=> {
     case 'ERROR_MOVIE':
       console.log('error', action.err)
       return state;
+    case 'VOTE_RECEIVED':
+      return {
+        message: 'Success'
+      }
+    case 'VOTE_ERROR':
+      return {
+        message: action.err
+      }
     default:
         return state
   }
