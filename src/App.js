@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { HashRouter, Switch, Route } from 'react-router-dom'
 import Navbar from './components/Layout/Navbar';
 import Footer from './components/Layout/Footer';
 import MovieSearch from './components/SearchMovie/MovieSearch';
@@ -12,7 +12,7 @@ import SignUp from './components/Auth/SignUp'
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <HashRouter>
         <div className="App">
           <Navbar />
           <Switch >
@@ -25,7 +25,7 @@ class App extends Component {
           <Footer />
         </div>
         
-      </BrowserRouter>
+      </HashRouter>
     );
 
   }
