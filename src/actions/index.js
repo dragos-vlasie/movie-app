@@ -4,7 +4,7 @@ import axios from 'axios';
 const apiKey = "e99043e1b44f1a6d68049b97f2e11003"
 export function loadMovie() {
     return (dispatch) => {
-        return axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1`)
+        return axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`)
         .then((res) => {dispatch(movieResult(res.data.results))})
         .catch((err) => {
           dispatch({ type: 'GET_MOVIES_ERROR', err });
