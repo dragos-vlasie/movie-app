@@ -25,7 +25,7 @@ export function searchMovie(searchTerm) {
     .then((res) => {dispatch(movieList(res.data.results))})
     .catch((err) => {
       dispatch({ type: 'SEARCH_MOVIES_ERROR', err });
-    });;
+    });
     }
 }
 
